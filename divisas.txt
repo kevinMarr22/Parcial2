@@ -1,0 +1,212 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+
+/**
+ *
+ * @author alumno
+ */
+public class CDIVISAS extends javax.swing.JFrame {
+    double cantidad=0;
+    double conversion=0;
+    String de="EUR";
+    String a="EUR";
+    public CDIVISAS() {
+        initComponents();
+        this.setTitle("CONVERSOR DE DIVISAS");
+        
+    }
+
+    public String aMoneda(double cantidad, String moneda){
+        return "$"+Math.round(cantidad*100.00)/100.00+""+moneda;
+    }
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cboDe = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        cboA = new javax.swing.JComboBox<>();
+        lblResultado = new javax.swing.JLabel();
+        spnCantidad = new javax.swing.JSlider();
+        lblCantidad = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setText("Introduce el Importe");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 28, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel3.setText("DE");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
+
+        cboDe.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cboDe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN", "GTQ" }));
+        cboDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboDeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cboDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel4.setText("A");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 20, -1));
+
+        cboA.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cboA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "MXN", "GTQ" }));
+        cboA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboAActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cboA, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+
+        lblResultado.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        getContentPane().add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 320, 60));
+
+        spnCantidad.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        spnCantidad.setMinimum(1);
+        spnCantidad.setOrientation(javax.swing.JSlider.VERTICAL);
+        spnCantidad.setPaintTicks(true);
+        spnCantidad.setToolTipText("");
+        spnCantidad.setValue(1);
+        spnCantidad.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                spnCantidadAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        spnCantidad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnCantidadStateChanged(evt);
+            }
+        });
+        getContentPane().add(spnCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 60, 280));
+
+        lblCantidad.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        lblCantidad.setText("1");
+        getContentPane().add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 90, 40));
+
+        pack();
+    }// </editor-fold>                        
+
+    private void cboDeActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        de=cboDe.getSelectedItem().toString();
+        convertir();
+    }                                     
+
+    private void cboAActionPerformed(java.awt.event.ActionEvent evt) {                                     
+        a=cboA.getSelectedItem().toString();
+        convertir();
+    }                                    
+
+    private void spnCantidadAncestorAdded(javax.swing.event.AncestorEvent evt) {                                          
+
+    }                                         
+
+    private void spnCantidadStateChanged(javax.swing.event.ChangeEvent evt) {                                         
+        cantidad=spnCantidad.getValue();
+        lblCantidad.setText(" "+cantidad);
+        convertir();
+    }                                        
+    public void convertir(){
+        switch(de){
+            case "EUR":
+            if(a.equals("USD")){
+                conversion=cantidad*1.05;
+            }else if(a.equals("MXN")){
+                conversion=cantidad*21.50;
+            }else if(a.equals("GTQ")){
+                conversion=cantidad*8.07;
+            }else{
+                conversion=cantidad;
+            }
+            break;
+            case "USD":
+            if(a.equals("EUR")){
+                conversion=cantidad*0.95;
+            }else if(a.equals("MXN")){
+                conversion=cantidad*20.43;
+            }else if(a.equals("GTQ")){
+                conversion=cantidad*7.67;
+            }else{
+                conversion=cantidad;
+            }
+            break;
+            case "MXN":
+            if(a.equals("EUR")){
+                conversion=cantidad*0.047;
+            }else if(a.equals("USD")){
+                conversion=cantidad*0.049;
+            }else if(a.equals("GTQ")){
+                conversion=cantidad*0.38;
+            }else{
+                conversion=cantidad;
+            }
+            break;
+            case "GTQ":
+            if(a.equals("EUR")){
+                conversion=cantidad*0.12;
+            }else if(a.equals("USD")){
+                conversion=cantidad*0.13;
+            }else if(a.equals("MXN")){
+                conversion=cantidad*2.67;
+            }else{
+                conversion=cantidad;
+            }
+            break;
+        }
+        lblResultado.setText(aMoneda(cantidad,de)+" -> "+aMoneda(conversion, a));
+    }
+
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CDIVISAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CDIVISAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CDIVISAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CDIVISAS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CDIVISAS().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JComboBox<String> cboA;
+    private javax.swing.JComboBox<String> cboDe;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblResultado;
+    private javax.swing.JSlider spnCantidad;
+    // End of variables declaration                   
+}
